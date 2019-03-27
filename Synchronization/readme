@@ -1,0 +1,33 @@
+q1:
+To run:
+1.First compile using gcc -pthread q1.c
+2.Then run ./a.out
+
+Design idea:
+->Done using semaphores and mutex locks.
+->start_organizer semaphore is used to ensure that players and referees are sent only when the organozer has been created.
+->Players and Referees are generated with probability proportional to the remaining no. of playes and referees.
+->player_allowed is used to ensure that only 2 players at a time to meet the organizer.
+->player_allocated semaphore and ref_allocated are used to ensure that organizer enters court once 2 players and a referee meet the organizer.
+->organizer_ready semaphore is used to ensure that players and referees do not enter the court unless a group is formed.
+->ref_allowed semaphore ensures that only 1 referee is allowed to meet the organizer at a time.
+->game_ready semaphore is used to synchronize start of game until the players are done with warmup and the referee is done with adjusting the equipment.
+->mutexlocks are used so as to ensure that the print functions are accessed by only one thread at a time.
+
+
+q3mergenormal:
+To run:
+gcc -pthread q3mergenormal.c
+./a.out<input1.txt>output
+
+q3mergeprocess:
+To run:
+gcc -pthread q3mergeprocess.c
+./a.out<input1.txt>output
+
+q3mergethread:
+To run:
+gcc -pthread q3mergethreads.c
+./a.out<input1.txt>output
+
+

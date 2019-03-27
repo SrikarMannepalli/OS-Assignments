@@ -1,0 +1,118 @@
+RUNNING:
+Run "make"
+Execute by using "./shell"
+Type "exit" to exit the shell
+
+FEATURES:
+Shell prompt:
+A shell prompt similar to the original shell appears.The directory from which the shell has been invoked
+will be the home directory and corresponding changes in the directory like cd are reflected as well.
+
+Built-in commands:
+Some built-in commands like cd,pwd and echo have been implemented.
+  cd command:
+    "cd (absolute path)" - goes to absolute path
+    "cd" - goes to ~/
+    "cd ~/(pathname)" - goes to ~/(pathname)
+    "cd .." - goes to previous directory
+    "cd ." - goes to same directory
+
+  pwd command:
+    "pwd" - prints path of present working directory
+          - prints absolute path for the directories previous to the one from which shell has been invoked, and path relatuve to this directory from there on.
+
+  echo command:
+    "echo" - prints empty line.
+    "echo text" - prints "text"
+
+Ls command:
+  ls takes arguments as flags (in the form -(flagname)) and directories (in the form -(directory name)) in any order.
+  It lists the files of all the directories mentioned, in the form of option selected by the flags.
+  If there is no directory mentioned, it lists the files of current directory
+
+  "ls -a" - display hidden files
+  "ls -l" - long list
+  "ls -al"/"ls -la"/"ls -l -a"/"ls -a -l" - long list including hidden files
+
+Pinfo command:
+It prints the process related info.
+    "pinfo" : prints the process related info of the shell program
+    "pinfo "pid"" : prints the process info about given pid
+
+    pid --
+    Process status -- {R/S/S+/Z}
+    Memory
+    Executable path -- (Absolute path - includes ~/ if executable is present inside the shell directory)
+
+
+Foreground and background processes:
+Executing a command in the foreground implies that your shell will wait for this process to complete and regain control when
+this process exits.
+Any command invoked with "&" is treated as background command. This implies that your shell will spawn that process and doesn't wait for
+the process to exit. It will keep taking user commands.
+
+If the background process exits then the shell must display the appropriate
+message to the user.
+
+Input-output redirection functionality:
+Output of a command can be redirected to another file or input can be drawn from a file.Appropriate error
+handling is also done(like displaying appropriate error message if file does not exist for input,creating an Output
+file with 644 permissions,etc)
+  Command format :
+    "command1" > "file1" < "file2"
+    "command1" >> "file1" < "file2"
+
+Command redirection using pipes:
+Support is provided to any number of pipes.(Output of one command is taken as input to the next command seperated using 
+pipes )
+  Command format :
+    "command1" | "command2"
+
+I/O redirection + pipes redirection:
+Pipes redirection including i/o redirection can be done.
+  Commans format:
+    "command1" < "file1" | "command2" > "file2"
+
+User defined commands:
+  Set environmental variable.
+    "setenv var [value]" - sets var to value if given else to empty string
+    "getenv var" - prints the value of the environmental variable var if it exits else error
+    "unsetenv var" - destroys the environmental variable var of exists else error
+    "jobs" - Prints a list of all currently running background jobs along with their pid in the order
+    of their creation along with their states.
+    "kjob <jobNumber> <signalNumber>" - Takes the jobNumber and sends the given signal value to that
+    process
+    "fg <jobNumber>" -  Brings a running or a stopped background job with given job
+number to foreground
+    "bg <jobNumber>" - changes a stopped background job to a running background
+job.
+    "overkill" - kills all background process at once.
+    "quit" - exits the shell.
+    "CTRL-Z" - It should change the status of currently running job to stop, and push it
+in background process.
+"CTRL-C" -  It should cause a SIGINT signal to be sent to the current foreground
+job of your shell. If there is no foreground job, then the signal should not have
+any effect.
+
+
+
+
+
+
+Bonus:
+Personal reminder
+  "remindme time statement" - prints "statement" after "time" seconds.
+
+Clock commmand
+  "clock -t time -n duration" - prints date and time after every "time" seconds for n seconds.
+
+Files and their corresponding parts:
+builtIn.c - checks if the command is builtin and executes if True
+getInput.c - takes input from prompt and divides into different commands and arguments for each
+ls.c - checks if the command is ls and executes it
+pinfo.c - checks if the command is pinfo and executes it
+remindme.c - checks if the command is remindme and executes it
+clock.c - checks if the command is clock and executes it
+convertCWD.c - gets the current working directory's absolute path and converts it as mentioned in shell prompt.
+redirection.c - checks if there is any redirection part and sets the required values and also handle piping.
+userdef.c - does all the userdefined commands part 

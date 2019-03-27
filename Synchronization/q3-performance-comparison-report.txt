@@ -1,0 +1,64 @@
+For normal merge sort:
+For input size 10:
+real	0m0.004s
+user	0m0.001s
+sys	0m0.003s
+
+For input size 100:
+real	0m0.004s
+user	0m0.001s
+sys	0m0.003s
+
+For input size 1000:
+real	0m0.004s
+user	0m0.001s
+sys	0m0.004s
+
+For input size 10000:
+real	0m0.010s
+user	0m0.004s
+sys	0m0.006s
+
+For merge sort using process creation:
+For input size 10:
+real	0m0.005s
+user	0m0.002s
+sys	0m0.004s
+
+For input size 100:
+real	0m0.023s
+user	0m0.044s
+sys	0m0.011s
+
+For input size 1000:
+real	0m0.068s
+user	0m0.169s
+sys	0m0.037s
+
+For input size 10000:
+real	0m0.348s
+user	0m1.148s
+sys	0m0.138s
+
+
+For merge sort using threads:
+For input size 10:
+real	0m0.005s
+user	0m0.001s
+sys	0m0.005s
+
+For input size 100:
+real	0m0.015s
+user	0m0.000s
+sys	0m0.014s
+
+For input size 1000:
+real	0m0.053s
+user	0m0.011s
+sys	0m0.037s
+
+For input size 10000:
+real	0m0.235s
+user	0m0.037s
+sys	0m0.209s
+
